@@ -14,7 +14,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:weightSum="1">
 
             <ImageView
@@ -23,12 +23,10 @@
                 android:layout_height="100dp"
                 android:layout_marginTop="100dp"
                 android:layout_gravity="center"
-                android:scaleType="centerCrop"
-                android:src="@drawable/profimg2"/>
+                android:scaleType="centerCrop"/>
 
             <TextView
                 android:id="@+id/userName"
-                android:text="John Doe"
                 android:layout_marginTop="40px"
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
@@ -40,15 +38,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/userLevel"
-                android:text="Level 1"
                 android:layout_marginTop="20px"
                 android:layout_gravity="center"
                 android:textSize="20dp"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
 
                 <TextView
                     android:text="BIO:"
@@ -60,16 +52,13 @@
 
                 <TextView
                     android:id="@+id/bio"
-                    android:text="I am a senior undergrad student major in Digital Meida. Huge fan in ice hocky. GO HUSKY!!!\n\nLink yo my webPage:http://guesswhat.com/husky"
                     android:layout_marginTop="20px"
                     android:layout_marginLeft="20px"
-                    android:layout_marginRight="10px"
+                    android:layout_marginRight="5px"
                     android:textSize="16dp"
-                    android:layout_gravity="left"
+                    android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-
-            </LinearLayout>
 
             </LinearLayout>
         </ScrollView>

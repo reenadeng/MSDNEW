@@ -1,13 +1,7 @@
 package com.example.chinmayee.mainactivity;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,11 +9,12 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
 
 
 public class PublicProfile extends AppCompatActivity {
-    ImageView imageView1;
-    RoundImage roundedImage;
+    ImageView image;
     TextView mText1;
     TextView mText2;
     TextView mText3;
@@ -31,12 +26,7 @@ public class PublicProfile extends AppCompatActivity {
         Firebase.setAndroidContext(this);
         Firebase mFBRef = new Firebase("https://flickering-inferno-293.firebaseio.com/");
 
-        imageView1 = (ImageView) findViewById(R.id.imageView1);
-        Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.profimg2);
-        roundedImage = new RoundImage(bm);
-        imageView1.setImageDrawable(roundedImage);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        image = (ImageView) findViewById(R.id.imageView1);
         mText1 = (TextView) findViewById(R.id.userName);
         mText2 = (TextView) findViewById(R.id.userLevel);
         mText3 = (TextView) findViewById(R.id.bio);
@@ -47,7 +37,10 @@ public class PublicProfile extends AppCompatActivity {
             public void onDataChange(DataSnapshot snapshot) {
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {
 
-                    // Haven't put image in here yet
+                    // Image
+                    String picSrc = (String) postSnapshot.child("pic").getValue();
+                    Picasso.with(image.getContext()).load(picSrc).transform(new CircleTransform())
+                            .into(image);
 
                     // Set user name
                     String name = (String) postSnapshot.child("fname").getValue() + " " +

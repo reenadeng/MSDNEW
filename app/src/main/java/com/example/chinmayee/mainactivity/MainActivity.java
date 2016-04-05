@@ -13,8 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.graphics.BitmapFactory;
-import android.graphics.Bitmap;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -23,11 +22,13 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
-    ImageView imageView1;
-    RoundImage roundedImage;
+    ImageView image;
     TextView mText1;
     TextView mText2;
     TextView mText3;
@@ -39,14 +40,20 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar mBar4;
     ProgressBar mBar5;
 
-    //new
-
     private ListView mDrawerList;
     private ArrayAdapter<String> mAdapter;
 
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     private String mActivityTitle;
+
+    private ArrayList<Integer> imgs = new ArrayList<Integer>();
+    private ArrayList<String> dates = new ArrayList<String>();
+    private ArrayList<String> names = new ArrayList<String>();
+    private ArrayList<String> locs = new ArrayList<String>();
+    private ArrayList<Integer> pts = new ArrayList<Integer>();
+    private LinearLayout scrollView;
+    private Firebase mFBRef ;
 
 
     @Override
@@ -66,13 +73,8 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-
-        Firebase mFBRef = new Firebase("https://flickering-inferno-293.firebaseio.com/");
-
-        imageView1 = (ImageView) findViewById(R.id.imageView1);
-        Bitmap bm = BitmapFactory.decodeResource(getResources(),R.drawable.profimg2);
-        roundedImage = new RoundImage(bm);
-        imageView1.setImageDrawable(roundedImage);
+        mFBRef = new Firebase("https://flickering-inferno-293.firebaseio.com/");
+        image = (ImageView) findViewById(R.id.imageView1);
         mText1 = (TextView) findViewById(R.id.userName);
         mText2 = (TextView) findViewById(R.id.bio);
         mText3 = (TextView) findViewById(R.id.levelNum);
@@ -86,20 +88,25 @@ public class MainActivity extends AppCompatActivity {
 
         Drive myapp = (Drive) getApplication();
         String userId = myapp.getUserId();
+        //String userId = "001722744";
 
         String searchUser = "user/" + userId;
         // Attach an listener to read the data at our posts reference
         mFBRef.child(searchUser).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot postSnapshot) {
-                    // Missing image
+
+                    // image
+                    String picSrc = (String) postSnapshot.child("pic").getValue();
+                    Picasso.with(image.getContext()).load(picSrc).transform(new CircleTransform())
+                            .into(image);
+
                     // Set user name
                     String name = (String) postSnapshot.child("fname").getValue() + " " +
                             (String) postSnapshot.child("lname").getValue();
                     mText1.setText(name);
 
                     // Set user BIO
-                    //String bio = (String) postSnapshot.child("about").getValue();
                     mText2.setText((String) postSnapshot.child("about").getValue());
 
                     // Set user level
@@ -126,6 +133,9 @@ public class MainActivity extends AppCompatActivity {
                     mBar4.setProgress(Integer.parseInt((String) postSnapshot.child("dimensions").child("d4").getValue()));
                     mBar5.setProgress(Integer.parseInt((String) postSnapshot.child("dimensions").child("d5").getValue()));
 
+                // Generate the recommend opportunity list
+                rcmListGenerator(mFBRef);
+
                 }
 
             @Override
@@ -134,6 +144,68 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    // Helper function. Must call it this way, else Firebase will complain
+    private void rcmListGenerator(Firebase mFBRef) {
+        mFBRef.child("opportunity").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot msgSnapshot : dataSnapshot.getChildren()) {
+
+                    String img = (String) msgSnapshot.child("pic").getValue();
+                    int mid = getApplicationContext().getResources().getIdentifier(img, "drawable", getApplicationContext().getPackageName());
+                    imgs.add(mid);
+
+                    dates.add(msgSnapshot.child("start date").getValue().toString());
+
+                    names.add(msgSnapshot.child("name").getValue().toString());
+
+                    locs.add(msgSnapshot.child("location").getValue().toString());
+
+                    Integer[] dimScore = new Integer[5];
+                    int sumScore = 0;
+                    for (int j = 1; j < 6; j++) {
+                        dimScore[j - 1] = Integer.parseInt((String) msgSnapshot.child("score").child("d" + j).getValue());
+                        sumScore += dimScore[j - 1];
+                    }
+                    pts.add(sumScore);
+
+                }
+
+                scrollView = (LinearLayout) findViewById(R.id.scrollView);
+                for (int i = 0; i < dates.size(); i++) {
+                    View v = getLayoutInflater().inflate(R.layout.item, null);
+                    ImageView imageView = (ImageView) v.findViewById(R.id.imgIcon);
+                    TextView tDate = (TextView) v.findViewById(R.id.txtDate);
+                    TextView tName = (TextView) v.findViewById(R.id.txtTitle);
+                    TextView tLoc = (TextView) v.findViewById(R.id.txtLoc);
+                    TextView tPTS = (TextView) v.findViewById(R.id.txtPTS);
+                    imageView.setImageResource(imgs.get(i));
+                    tDate.setText(dates.get(i));
+                    tName.setText(names.get(i));
+                    tLoc.setText(locs.get(i));
+                    tPTS.setText(pts.get(i).toString());
+
+
+                    //final int finalI = i;
+            /*v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    imgResult.setImageResource(icons[finalI]);
+                }
+            });*/
+
+                    scrollView.addView(v);
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                System.out.println("OppDetail failed: " + firebaseError.getMessage());
+            }
+        });
     }
 
     private void setupToolbar() {

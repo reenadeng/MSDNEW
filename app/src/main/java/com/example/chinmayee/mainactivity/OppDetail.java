@@ -1,17 +1,11 @@
 package com.example.chinmayee.mainactivity;
 
-//import android.graphics.Bitmap;
-//import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -25,21 +19,20 @@ import java.util.ArrayList;
 
 public class OppDetail extends AppCompatActivity {
     ImageView image;
-    //RoundImage roundedImage;
     private Firebase mFBRef ;
     TextView mText1;
     TextView mText2;
     TextView mText3;
     TextView mText4;
     TextView mText5;
-    Integer oppID = 1002;
-    ArrayList<Integer> imgs = new ArrayList<Integer>();
-    ArrayList<String> dates = new ArrayList<String>();
-    ArrayList<String> names = new ArrayList<String>();
-    ArrayList<String> locs = new ArrayList<String>();
-    ArrayList<Integer> pts = new ArrayList<Integer>();
-    int[] icons= {R.drawable.hi, R.drawable.opp1, R.drawable.star,R.drawable.hi, R.drawable.opp1, R.drawable.star};
-    LinearLayout scrollView;
+    Button mButton;
+    Integer oppID = 1001;
+    private ArrayList<Integer> imgs = new ArrayList<Integer>();
+    private ArrayList<String> dates = new ArrayList<String>();
+    private ArrayList<String> names = new ArrayList<String>();
+    private ArrayList<String> locs = new ArrayList<String>();
+    private ArrayList<Integer> pts = new ArrayList<Integer>();
+    private LinearLayout scrollView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +40,6 @@ public class OppDetail extends AppCompatActivity {
         setContentView(R.layout.activity_opp_detail);
         Firebase.setAndroidContext(this);
         mFBRef = new Firebase("https://flickering-inferno-293.firebaseio.com/");
-        //imageView1 = (ImageView) findViewById(R.id.imageView1);
-        //Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.profimg2);
-        //roundedImage = new RoundImage(bm);
-        // imageView1.setImageDrawable(roundedImage);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         mText1 = (TextView) findViewById(R.id.oppDate);
         mText2 = (TextView) findViewById(R.id.oppName);
         mText3 = (TextView) findViewById(R.id.oppDes);
@@ -61,14 +48,15 @@ public class OppDetail extends AppCompatActivity {
         mText5 = (TextView) findViewById(R.id.oppContact);
 
         // Attach an listener to read the data at our posts reference
+        //!!! Need a way to get the opp ID
         String oppFBID = "opportunity/" + oppID.toString();
         mFBRef.child(oppFBID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot postSnapshot) {
 
                 String picSrc = (String) postSnapshot.child("pic").getValue();
-                int id = getApplicationContext().getResources().getIdentifier(picSrc, "drawable", getApplicationContext().getPackageName());
-                System.out.println("################ First" + id);
+                int id = getApplicationContext().getResources().getIdentifier(picSrc,
+                        "drawable", getApplicationContext().getPackageName());
                 image.setImageResource(id);
 
                 mText1.setText((String) postSnapshot.child("start date").getValue());
@@ -89,14 +77,13 @@ public class OppDetail extends AppCompatActivity {
 
             @Override
             public void onCancelled(FirebaseError firebaseError) {
-                System.out.println("The read failed: " + firebaseError.getMessage());
+                System.out.println("OppDetail failed: " + firebaseError.getMessage());
             }
         });
 
     }
 
     // Helper function. Must call it this way, else Firebase will complain
-
     private void rcmListGenerator(Firebase mFBRef){
         mFBRef.child("opportunity").addValueEventListener(new ValueEventListener() {
             @Override
@@ -107,7 +94,6 @@ public class OppDetail extends AppCompatActivity {
                     String img = (String) msgSnapshot.child("pic").getValue();
                     int mid = getApplicationContext().getResources().getIdentifier(img, "drawable", getApplicationContext().getPackageName());
                     imgs.add(mid);
-                    System.out.println("###########" + mid);
 
                     dates.add(msgSnapshot.child("start date").getValue().toString());
 
@@ -128,16 +114,13 @@ public class OppDetail extends AppCompatActivity {
 
                 scrollView = (LinearLayout)findViewById(R.id.scrollView);
                 for (int i = 0; i<dates.size(); i++){
-                    //System.out.println("########### OK ###############");
-                    LayoutInflater li = getLayoutInflater();
-                    View v = li.inflate(R.layout.item, null);
+                    View v = getLayoutInflater().inflate(R.layout.item, null);
                     ImageView imageView = (ImageView)v.findViewById(R.id.imgIcon);
                     TextView tDate = (TextView)v.findViewById(R.id.txtDate);
                     TextView tName = (TextView)v.findViewById(R.id.txtTitle);
                     TextView tLoc = (TextView)v.findViewById(R.id.txtLoc);
                     TextView tPTS = (TextView)v.findViewById(R.id.txtPTS);
                     imageView.setImageResource(imgs.get(i));
-                    //imageView.setImageResource(icons[i]);
                     tDate.setText(dates.get(i));
                     tName.setText(names.get(i));
                     tLoc.setText(locs.get(i));
@@ -158,7 +141,7 @@ public class OppDetail extends AppCompatActivity {
 
             @Override
             public void onCancelled(FirebaseError firebaseError) {
-
+                System.out.println("#########OppDetail failed: " + firebaseError.getMessage());
             }
         });
     }
