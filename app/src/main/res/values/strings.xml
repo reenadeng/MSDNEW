@@ -1,0 +1,53 @@
+<resources>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="app_name">MainActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="name_label">Name:</string>
+    <string name="actual_name">John Doe</string>
+    <string name="bio">I am awesome!I love ice-cream</string>string>
+    <string name="progressString">Your Progress:</string>
+    <string name="levelNum">Level 1</string>
+    <string name="levelScore">400/1000</string>
+    <string name="ia">Intellectual Agility</string>
+    <string name="gm">Global Mindset</string>
+    <string name="scic">Social Consciousness and Interpersonal Commitment</string>
+    <string name="ppe">Professional and Personal Effectiveness</string>
+    <string name="wb">Well-being</string>
+    <string name="recOpp">RECOMMENDED OPPORTUNITIES</string>
+    <string name="eventName">Web Tips</string>
+    <string name="title_activity_public_profile">PublicProfile</string>
+    <string name="userLevel">Level 3</string>
+    <string name="fname">First Name:</string>
+    <string name="placeholder_fname">John</string>
+    <string name="lname">Last Name:</string>
+    <string name="placeholder_lname">Doe</string>
+    <string name="biolabel">Bio:</string>
+    <string name="visibility">Change Visibility:</string>
+    <string-array name="visible_array">
+        <item>Public</item>
+        <item>Private</item>
+        <item>Customize</item>
+    </string-array>
+    <string name="title_activity_edit_profile">EditProfile</string>
+    <string name="imgdesc">imgdesc</string>
+    <string name="title_activity_opp_detail">OppDetail</string>
+    <string name="oppDate">THU, MAR 29, 18:30</string>
+    <string name="oppName">Some Event</string>
+    <string name="oppDes">Worried about the required skill level? If you know basic HTML and CSS,
+        then this event is for you.</string>
+    <string name="oppLoc">Dodge Hall</string>
+    <string name="google_maps_key">AIzaSyAkfw5ccdfEw1kFH7ON4yv6gs7uXO08uJo</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_map">Map</string>
+    <string name="oppContact">Mr.Joe Smith\nsmith.j@husky.neu.edu</string>
+    <string name="a1Name">A.Johnson</string>
+    <string name="a2Name">whatever.testing</string>
+    <string name="title_activity_login">LOGIN</string>
+    <string name="title_activity_register">REGISTER</string>
+    <string name="userName">Username: </string>
+    <string name="placeholder_edit_username">Username </string>
+    <string name="passWord">Password: </string>
+</resources>
