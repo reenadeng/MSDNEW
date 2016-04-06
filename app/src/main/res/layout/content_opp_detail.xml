@@ -242,12 +242,23 @@
                     >
                 </LinearLayout>
             </HorizontalScrollView>
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="20px"/>
+                android:layout_marginTop="70px"/>
         </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:id="@+id/mButton"
+        android:layout_marginTop="450dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:background="#ff4fd0d6"
+        android:textColor="#fefefe"
+        android:text="REGISTER"/>
 
 </RelativeLayout>

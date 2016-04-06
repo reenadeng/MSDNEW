@@ -54,7 +54,6 @@ public class PublicProfile extends AppCompatActivity {
                     // Set user BIO
                     mText3.setText((String) postSnapshot.child("about").getValue());
 
-
                 }
             }
                 @Override

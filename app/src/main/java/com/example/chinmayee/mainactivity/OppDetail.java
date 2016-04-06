@@ -1,5 +1,6 @@
 package com.example.chinmayee.mainactivity;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -15,7 +16,11 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class OppDetail extends AppCompatActivity {
     ImageView image;
@@ -26,13 +31,16 @@ public class OppDetail extends AppCompatActivity {
     TextView mText4;
     TextView mText5;
     Button mButton;
-    Integer oppID = 1001;
+    Integer oppID = 1006;
     private ArrayList<Integer> imgs = new ArrayList<Integer>();
     private ArrayList<String> dates = new ArrayList<String>();
     private ArrayList<String> names = new ArrayList<String>();
     private ArrayList<String> locs = new ArrayList<String>();
     private ArrayList<Integer> pts = new ArrayList<Integer>();
     private LinearLayout scrollView;
+    private Boolean isBefore = false;
+    private Boolean cBtnFlag = false;
+    private String edate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +54,7 @@ public class OppDetail extends AppCompatActivity {
         mText4 = (TextView) findViewById(R.id.oppLoc);
         image = (ImageView) findViewById(R.id.image);
         mText5 = (TextView) findViewById(R.id.oppContact);
+        mButton = (Button) findViewById(R.id.mButton);
 
         // Attach an listener to read the data at our posts reference
         //!!! Need a way to get the opp ID
@@ -69,6 +78,41 @@ public class OppDetail extends AppCompatActivity {
 
                 mText5.setText((String) postSnapshot.child("contact").getValue());
 
+                edate = (String) postSnapshot.child("end date").getValue();
+
+                // Set the button
+                mButton.setTransformationMethod(null);
+                mButton.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy, h:mm a");
+                        String curT = new SimpleDateFormat("MM/dd/yyyy, h:mm a")
+                                .format(Calendar.getInstance().getTime());
+
+                        try {
+                            if (sdf.parse(edate).before(sdf.parse(curT))) {
+                                isBefore = true;
+                            }
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+
+                        // When button first got click
+                        if (!cBtnFlag) {
+                            // Change the buttonText into completed
+                            mButton.setText("COMPLETED");
+                            // Change the button color
+                            mButton.setBackgroundColor(0xFFFF0000);
+                            cBtnFlag = true;
+                        } else if (!isBefore) { // Click it before the end Date
+                            // Have a Dialog instead of a disable the button
+                            System.out.println("############# Can't click now!!!!!!! ###########");
+                        } else { // Click it after the end Date
+                            mButton.setVisibility(View.GONE);
+
+                        }
+                    }
+            });
+
                 // Missing attendees in db
 
                 // Generate the recommendation opportunity list
@@ -80,6 +124,7 @@ public class OppDetail extends AppCompatActivity {
                 System.out.println("OppDetail failed: " + firebaseError.getMessage());
             }
         });
+
 
     }
 
@@ -153,7 +198,4 @@ public class OppDetail extends AppCompatActivity {
         transaction.add(R.id.mapView, fragment);
         transaction.commit();
     }
-
-
-
 }
