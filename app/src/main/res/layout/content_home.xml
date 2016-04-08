@@ -91,6 +91,26 @@
                     android:layout_toStartOf="@+id/star"
                     android:textAlignment="center"/>
 
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="1dp"
+                    android:layout_height="1dp"
+                    android:text=" "
+                    android:id="@+id/buttonTransparent"
+                    android:layout_toEndOf="@+id/username"
+                    android:background="@android:color/transparent"
+                    android:layout_below="@+id/points" />
+
+                <Button
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="1dp"
+                    android:layout_height="1dp"
+                    android:text="hello"
+                    android:id="@+id/buttonTransparent1"
+                    android:layout_toEndOf="@+id/buttonTransparent"
+                    android:background="@android:color/transparent"
+                    android:layout_alignTop="@+id/progressBarHome" />
+
             </RelativeLayout>
             <View
                 android:layout_width="match_parent"

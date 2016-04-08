@@ -34,7 +34,7 @@ public class Login extends AppCompatActivity {
             public void onClick(View arg0) {
                 String uname = edUsername.getText().toString();
                 String pass = edPassword.getText().toString();
-                if (uname.equals("demo") && pass.equals("demo1")) {
+                if (uname.equals("demo@husky.neu.edu") && pass.equals("demo1")) {
                     Intent intent = new Intent(Login.this, HomeActivity.class);
                   //  intent.putExtra("username", edUsername.getText().toString());
                     myapp = (Drive) getApplication();
@@ -43,8 +43,16 @@ public class Login extends AppCompatActivity {
                     myapp.setLevel("1");
                     startActivity(intent);
                 } else {
-                    Toast.makeText(Login.this, "Invalid Usename password pair.- Username- "+uname+"Pwd- "+pass, Toast.LENGTH_LONG).show();
+                    Toast.makeText(Login.this, "Invalid username and password pair. Please check!", Toast.LENGTH_LONG).show();
                 }
+            }
+        });
+
+        Button register = (Button)findViewById(R.id.new_user);
+        register.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+                Intent intent = new Intent(Login.this, Register.class);
+                startActivity(intent);
             }
         });
 

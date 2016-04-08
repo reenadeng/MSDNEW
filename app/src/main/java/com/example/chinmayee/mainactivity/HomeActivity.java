@@ -371,6 +371,30 @@ public class HomeActivity extends AppCompatActivity {
                 userName.setText(dataSnapshot.child("fname").getValue().toString().toUpperCase());
                 star.setText(((Integer) lev).toString());
 
+                star.setOnClickListener(new OnClickListener() {
+                    public void onClick(View arg0) {
+                        Intent myIntent = new Intent(HomeActivity.this, MainActivity.class);
+                        startActivity(myIntent);
+                    }
+                });
+
+
+                Button trans = (Button)findViewById(R.id.buttonTransparent);
+                trans.setOnClickListener(new OnClickListener() {
+                    public void onClick(View arg0) {
+                        Intent myIntent = new Intent(HomeActivity.this, MyOppsActivity.class);
+                        startActivity(myIntent);
+                    }
+                });
+
+                Button trans1 = (Button)findViewById(R.id.buttonTransparent);
+                trans1.setOnClickListener(new OnClickListener() {
+                    public void onClick(View arg0) {
+                        Intent myIntent = new Intent(HomeActivity.this, MainActivity.class);
+                        startActivity(myIntent);
+                    }
+                });
+
                 final int nextScore = sumScore;
                 Firebase getLevelScore = new Firebase("https://flickering-inferno-293.firebaseio.com/level/" + lev.toString());
                 getLevelScore.addValueEventListener(new ValueEventListener() {
