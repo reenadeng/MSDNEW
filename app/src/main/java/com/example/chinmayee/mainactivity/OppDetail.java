@@ -1,6 +1,5 @@
 package com.example.chinmayee.mainactivity;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -10,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -20,7 +20,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 public class OppDetail extends AppCompatActivity {
     ImageView image;
@@ -97,15 +96,15 @@ public class OppDetail extends AppCompatActivity {
                         }
 
                         // When button first got click
-                        if (!cBtnFlag) {
-                            // Change the buttonText into completed
+                        if (!cBtnFlag) { // Change the buttonText into completed
                             mButton.setText("COMPLETED");
                             // Change the button color
                             mButton.setBackgroundColor(0xFFFF0000);
                             cBtnFlag = true;
                         } else if (!isBefore) { // Click it before the end Date
                             // Have a Dialog instead of a disable the button
-                            System.out.println("############# Can't click now!!!!!!! ###########");
+                            Toast.makeText(getApplicationContext(), "Opportunity hasn't ended yet.",
+                                    Toast.LENGTH_LONG).show();
                         } else { // Click it after the end Date
                             mButton.setVisibility(View.GONE);
 
