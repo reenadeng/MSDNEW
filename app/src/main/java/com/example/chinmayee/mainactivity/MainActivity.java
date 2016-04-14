@@ -28,32 +28,34 @@ import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
-    ImageView image;
-    TextView mText1;
-    TextView mText2;
-    TextView mText3;
-    TextView mText4;
-    ProgressBar mBar0;
-    ProgressBar mBar1;
-    ProgressBar mBar2;
-    ProgressBar mBar3;
-    ProgressBar mBar4;
-    ProgressBar mBar5;
-
+    private ImageView image;
+    private TextView mText1;
+    private TextView mText2;
+    private TextView mText3;
+    private TextView mText4;
+    private ProgressBar mBar0;
+    private ProgressBar mBar1;
+    private ProgressBar mBar2;
+    private ProgressBar mBar3;
+    private ProgressBar mBar4;
+    private ProgressBar mBar5;
     private ListView mDrawerList;
     private ArrayAdapter<String> mAdapter;
-
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     private String mActivityTitle;
-
     private ArrayList<Integer> imgs = new ArrayList<Integer>();
     private ArrayList<String> dates = new ArrayList<String>();
     private ArrayList<String> names = new ArrayList<String>();
     private ArrayList<String> locs = new ArrayList<String>();
     private ArrayList<Integer> pts = new ArrayList<Integer>();
+    private ArrayList<String> recIds = new ArrayList<String>();
     private LinearLayout scrollView;
     private Firebase mFBRef ;
+    private Bundle bundle;
+    private Integer oppID;
+    private Boolean cBtnFlag;
+    private boolean starCounter = false;
 
 
     @Override
@@ -62,6 +64,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Firebase.setAndroidContext(this);
 
+        bundle = getIntent().getExtras();
+        //cBtnFlag = bundle.getBoolean("isComplete");
+        //starCounter = bundle.getBoolean("isSaved");
+
         setupToolbar();
         mDrawerList = (ListView)findViewById(R.id.navList1);
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout1);
@@ -69,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
 
         addDrawerItems();
         setupDrawer();
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
@@ -88,50 +93,55 @@ public class MainActivity extends AppCompatActivity {
 
         Drive myapp = (Drive) getApplication();
         String userId = myapp.getUserId();
-        //String userId = "001722744";
 
         String searchUser = "user/" + userId;
         // Attach an listener to read the data at our posts reference
         mFBRef.child(searchUser).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot postSnapshot) {
-
-                    // image
-                    String picSrc = (String) postSnapshot.child("pic").getValue();
+                // Set user img
+                String picSrc = (String) postSnapshot.child("pic").getValue();
+                if (picSrc.equals("profimg2")) {
+                    Picasso.with(image.getContext()).load(R.drawable.profimg2).transform(new CircleTransform())
+                            .into(image);
+                } else if (picSrc.equals("profileimg1")) {
+                    Picasso.with(image.getContext()).load(R.drawable.profileimg1).transform(new CircleTransform())
+                            .into(image);
+                } else { // If picSrc isn't an url, then can't use Picasso
                     Picasso.with(image.getContext()).load(picSrc).transform(new CircleTransform())
                             .into(image);
+                }
+                // Set user name
+                String name = (String) postSnapshot.child("fname").getValue() + " " +
+                        (String) postSnapshot.child("lname").getValue();
+                mText1.setText(name);
 
-                    // Set user name
-                    String name = (String) postSnapshot.child("fname").getValue() + " " +
-                            (String) postSnapshot.child("lname").getValue();
-                    mText1.setText(name);
+                // Set user BIO
+                mText2.setText((String) postSnapshot.child("about").getValue());
 
-                    // Set user BIO
-                    mText2.setText((String) postSnapshot.child("about").getValue());
+                // Set user level
+                String level = "LEVEL " + (String) postSnapshot.child("level").getValue();
+                mText3.setText(level);
 
-                    // Set user level
-                    String level = "LEVEL " + (String) postSnapshot.child("level").getValue();
-                    mText3.setText(level);
+                // Set Total progress bar and score
+                int[] dimScore = new int[5];
+                int sumScore = 0;
+                for (int j = 1; j < 6; j++) {
+                    dimScore[j - 1] = Integer.parseInt((String) postSnapshot.child("dimensions").child("d" + j).getValue());
+                    sumScore += dimScore[j - 1];
+                }
+                int levelScore = 1000;
 
-                    // Set Total progress bar and score
-                    int[] dimScore = new int[5];
-                    int sumScore = 0;
-                    for (int j = 1; j < 6; j++) {
-                        dimScore[j - 1] = Integer.parseInt((String) postSnapshot.child("dimensions").child("d" + j).getValue());
-                        sumScore += dimScore[j - 1];
-                    }
-                    int levelScore = 1000;
+                mBar0.setMax(levelScore);
+                mBar0.setProgress(sumScore);
+                mText4.setText(sumScore + "/"+levelScore);
 
-                    mBar0.setMax(levelScore);
-                    mBar0.setProgress(sumScore);
-                    mText4.setText(sumScore + "/"+levelScore);
-
-                    // Update 5 progress bars
-                    mBar1.setProgress(Integer.parseInt((String) postSnapshot.child("dimensions").child("d1").getValue()));
-                    mBar2.setProgress(Integer.parseInt((String) postSnapshot.child("dimensions").child("d2").getValue()));
-                    mBar3.setProgress(Integer.parseInt((String) postSnapshot.child("dimensions").child("d3").getValue()));
-                    mBar4.setProgress(Integer.parseInt((String) postSnapshot.child("dimensions").child("d4").getValue()));
-                    mBar5.setProgress(Integer.parseInt((String) postSnapshot.child("dimensions").child("d5").getValue()));
+                // Update 5 progress bars
+                mBar1.setProgress(Integer.parseInt((String) postSnapshot.child("dimensions").child("d1").getValue()));
+                mBar2.setProgress(Integer.parseInt((String) postSnapshot.child("dimensions").child("d2").getValue()));
+                mBar3.setProgress(Integer.parseInt((String) postSnapshot.child("dimensions").child("d3").getValue()));
+                mBar4.setProgress(Integer.parseInt((String) postSnapshot.child("dimensions").child("d4").getValue()));
+                mBar5.setProgress(Integer.parseInt((String) postSnapshot.child("dimensions").child("d5").getValue()));
 
                 // Generate the recommend opportunity list
                 rcmListGenerator(mFBRef);
@@ -157,12 +167,10 @@ public class MainActivity extends AppCompatActivity {
                     String img = (String) msgSnapshot.child("pic").getValue();
                     int mid = getApplicationContext().getResources().getIdentifier(img, "drawable", getApplicationContext().getPackageName());
                     imgs.add(mid);
-
                     dates.add(msgSnapshot.child("start date").getValue().toString());
-
                     names.add(msgSnapshot.child("name").getValue().toString());
-
                     locs.add(msgSnapshot.child("location").getValue().toString());
+                    recIds.add(msgSnapshot.child("oppId").getValue().toString());
 
                     Integer[] dimScore = new Integer[5];
                     int sumScore = 0;
@@ -176,27 +184,30 @@ public class MainActivity extends AppCompatActivity {
 
                 scrollView = (LinearLayout) findViewById(R.id.scrollView);
                 for (int i = 0; i < dates.size(); i++) {
+                    final int passID = Integer.parseInt(recIds.get(i));
                     View v = getLayoutInflater().inflate(R.layout.item, null);
-                    ImageView imageView = (ImageView) v.findViewById(R.id.imgIcon);
-                    TextView tDate = (TextView) v.findViewById(R.id.txtDate);
-                    TextView tName = (TextView) v.findViewById(R.id.txtTitle);
-                    TextView tLoc = (TextView) v.findViewById(R.id.txtLoc);
-                    TextView tPTS = (TextView) v.findViewById(R.id.txtPTS);
+                    ImageView imageView = (ImageView)v.findViewById(R.id.imgIcon);
+                    TextView tDate = (TextView)v.findViewById(R.id.txtDate);
+                    TextView tName = (TextView)v.findViewById(R.id.txtTitle);
+                    TextView tLoc = (TextView)v.findViewById(R.id.txtLoc);
+                    TextView tPTS = (TextView)v.findViewById(R.id.txtPTS);
                     imageView.setImageResource(imgs.get(i));
                     tDate.setText(dates.get(i));
                     tName.setText(names.get(i));
                     tLoc.setText(locs.get(i));
                     tPTS.setText(pts.get(i).toString());
 
-
-                    //final int finalI = i;
-            /*v.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    imgResult.setImageResource(icons[finalI]);
-                }
-            });*/
-
+                    v.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View arg0) {
+                            Intent myIntent = new Intent(MainActivity.this, OppDetail.class);
+                            Bundle b = new Bundle();
+                            b.putInt("oppId", passID); //Your id
+                            //b.putString("userLevel", bundle.getString("userLevel"));
+                            //b.putBoolean("isComplete", false);
+                            myIntent.putExtras(b); //Put your id to your next Intent
+                            startActivity(myIntent);
+                        }
+                    });
                     scrollView.addView(v);
                 }
             }

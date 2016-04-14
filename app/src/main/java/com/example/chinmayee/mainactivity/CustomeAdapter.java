@@ -11,11 +11,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-;
 
-/**
- * Created by Swapnil on 3/28/2016.
- */
 public class CustomeAdapter extends BaseAdapter {
 
     Context context;
@@ -54,6 +50,7 @@ public class CustomeAdapter extends BaseAdapter {
         TextView txtTitle = (TextView) convertView.findViewById(R.id.title);
         TextView txtLoc = (TextView) convertView.findViewById(R.id.location);
         TextView txtPts = (TextView) convertView.findViewById(R.id.pts);
+        TextView txtCat = (TextView) convertView.findViewById(R.id.category);
 
         Opportunity opp_pos = opp.get(position);
         // setting the image resource and title
@@ -61,6 +58,7 @@ public class CustomeAdapter extends BaseAdapter {
         int id = parent.getContext().getResources().getIdentifier(imgName, "drawable", parent.getContext().getPackageName());
         imgIcon.setScaleType(ImageView.ScaleType.FIT_XY);
         imgIcon.setImageResource(id);
+        txtCat.setText(opp_pos.getCatagory().toUpperCase());
         txtDate.setText("When: "+opp_pos.getDate());
         txtLoc.setText("Where: " + opp_pos.getLocation());
         txtTitle.setText("What: "+opp_pos.getShortDesc());

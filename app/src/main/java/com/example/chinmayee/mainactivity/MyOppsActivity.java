@@ -183,7 +183,7 @@ public class MyOppsActivity extends AppCompatActivity {
 
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
-        tabLayout.addTab(tabLayout.newTab().setText("INPROGRESS"));
+        tabLayout.addTab(tabLayout.newTab().setText("IN PROGRESS"));
         tabLayout.addTab(tabLayout.newTab().setText(" UPCOMING "));
         tabLayout.addTab(tabLayout.newTab().setText("COMPLETED "));
         tabLayout.addTab(tabLayout.newTab().setText("  SAVED"));

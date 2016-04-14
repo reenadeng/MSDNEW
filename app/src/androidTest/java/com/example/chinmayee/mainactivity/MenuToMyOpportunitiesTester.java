@@ -74,7 +74,7 @@ public class MenuToMyOpportunitiesTester extends InstrumentationTestCase {
 
         device.wait(Until.hasObject(By.text("MY OPPORTUNITIES")), 5000);
         UiObject2 myinfoBanner = device.findObject(By.text("MY OPPORTUNITIES"));
-        device.waitForIdle(3000);
+        device.waitForIdle(5000);
         //  UiObject2 resultText = device.findObject(By.clazz("android.widget.EditText"));
         String result = myinfoBanner.getText();
         assertTrue(result.equals("MY OPPORTUNITIES"));

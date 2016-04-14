@@ -72,7 +72,7 @@ public class MenuToMyInfoTester extends InstrumentationTestCase {
 
         device.wait(Until.hasObject(By.text("MY INFO")), 5000);
         UiObject2 myinfoBanner = device.findObject(By.text("MY INFO"));
-        device.waitForIdle(3000);
+        device.waitForIdle(5000);
         //  UiObject2 resultText = device.findObject(By.clazz("android.widget.EditText"));
         String result = myinfoBanner.getText();
         assertTrue(result.equals("MY INFO"));

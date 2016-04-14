@@ -40,8 +40,6 @@ public class HomeActivity extends AppCompatActivity {
     private  Button buttonClubMem;
     private ProgressBar progressBar;
     private String userLevel;
-
-    //new
     private ListView mDrawerList;
     private DrawerLayout mDrawerLayout;
     private ArrayAdapter<String> mAdapter;
@@ -57,8 +55,6 @@ public class HomeActivity extends AppCompatActivity {
         setupTablayout();
         setupSearch();
         setupButtonsAction();
-
-        //new
         setupToolbar();
         mDrawerList = (ListView)findViewById(R.id.navList2);
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout2);
@@ -71,9 +67,6 @@ public class HomeActivity extends AppCompatActivity {
 
 
     }
-
-
-    //new
 
     private void setupToolbar() {
         // TODO Auto-generated method stub
@@ -277,7 +270,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void setupSearch(){
         searchView = (SearchView) findViewById(R.id.searchView);
-        searchView.setQueryHint("Search Category");
+        searchView.setQueryHint("Search Opportunities");
 
         searchView.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
 
@@ -302,6 +295,7 @@ public class HomeActivity extends AppCompatActivity {
                 Bundle b = new Bundle();
                 b.putString("filter", query); //Your id
                 b.putString("userLevel", userLevel);
+                b.putBoolean("isComplete", false);
                 myIntent.putExtras(b); //Put your id to your next Intent
                 startActivity(myIntent);
                 return false;

@@ -11,6 +11,7 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 
+// In case Picasso doesn't work
 public class RoundImage extends Drawable {
     private final Bitmap mBitmap;
     private final Paint mPaint;

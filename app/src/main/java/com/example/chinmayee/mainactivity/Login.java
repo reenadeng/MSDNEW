@@ -41,6 +41,7 @@ public class Login extends AppCompatActivity {
                     myapp.setUserId("001722744");
                     myapp.setUserEmail(uname);
                     myapp.setLevel("1");
+                    myapp.setPic("profileimg1");
                     startActivity(intent);
                 } else {
                     Toast.makeText(Login.this, "Invalid username and password pair. Please check!", Toast.LENGTH_LONG).show();

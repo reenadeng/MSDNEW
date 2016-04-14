@@ -1,8 +1,5 @@
 package com.example.chinmayee.mainactivity;;
 
-/**
- * Created by Swapnil on 3/28/2016.
- */
 public class Opportunity {
     private int id;
     private String name;
@@ -13,31 +10,10 @@ public class Opportunity {
     private String shortDesc;
     private String location;
     private Integer[] dimScore;
+    private String catagory;
 
-
-    /*public Opportunity(String name, String img_loc) {
-
-        this.name = name;
-        this.img_loc = img_loc;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getImg_loc() {
-        return img_loc;
-    }
-
-    public void setImg_loc(String img_loc) {
-        this.img_loc = img_loc;
-    }*/
-
-    public Opportunity(int id, String name, String img_loc, String date, int level, String longDecs, String shortDesc, Integer[] dimScore, String location) {
+    public Opportunity(int id, String name, String img_loc, String date, int level, String longDecs,
+                       String shortDesc, Integer[] dimScore, String location, String catagory) {
         this.id = id;
         this.name = name;
         this.img_loc = img_loc;
@@ -47,10 +23,18 @@ public class Opportunity {
         this.shortDesc = shortDesc;
         this.dimScore = dimScore;
         this.location= location;
+        this.catagory = catagory;
     }
 
     public Opportunity() {}
 
+    public String getCatagory() {
+        return catagory;
+    }
+
+    public void setCatagory(String catagory) {
+        this.catagory = catagory;
+    }
 
     public int getId() {
         return id;

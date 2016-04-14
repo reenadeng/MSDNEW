@@ -20,9 +20,6 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Swapnil on 3/24/2016.
- */
 public class AllOppFragment extends ListFragment {
 
     private List<Opportunity> toDisplay;
@@ -55,8 +52,8 @@ public class AllOppFragment extends ListFragment {
                         String name = (String) messageSnapshot.child("name").getValue();
                         String category = (String) messageSnapshot.child("category").getValue();
                         String catFilter = bundle.getString("filter");
-                        if (catFilter == "" || catFilter.equals(category))
-                            toDisplay.add(new Opportunity(id, name, img_loc, date, level, longDecs, shortDesc, dimScore, location));
+                        if (catFilter == "" || shortDesc.toUpperCase().contains(catFilter.toUpperCase()))
+                            toDisplay.add(new Opportunity(id, name, img_loc, date, level, longDecs, shortDesc, dimScore, location, category));
                     }
                 }
                 CustomeAdapter adapter = new CustomeAdapter(getActivity(), toDisplay);

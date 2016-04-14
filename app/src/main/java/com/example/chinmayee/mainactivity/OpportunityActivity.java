@@ -19,7 +19,6 @@ import android.widget.ListView;
 
 import com.firebase.client.Firebase;
 
-;
 
 public class OpportunityActivity extends AppCompatActivity {
     TabLayout tabLayout;

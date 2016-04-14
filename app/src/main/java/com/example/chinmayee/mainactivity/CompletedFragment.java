@@ -20,9 +20,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by Swapnil on 3/24/2016.
- */
 public class CompletedFragment extends Fragment {
 
     View rootView;
@@ -56,7 +53,6 @@ public class CompletedFragment extends Fragment {
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     if (dataSnapshot1.child("nuid").getValue().toString().equals(bundle.getString("nuId"))) {
                         completed.add(Integer.valueOf(dataSnapshot1.child("oppId").getValue().toString()));
-                        System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" + completed);
                     }
                 }
                 processIds(view);
@@ -92,15 +88,14 @@ public class CompletedFragment extends Fragment {
                             }
                             String date = (String) messageSnapshot.child("start date").getValue();
                             String name = (String) messageSnapshot.child("name").getValue();
+                            String category = (String) messageSnapshot.child("category").getValue();
                             if (completed.contains(id)) {
-                                toDisplay.add(pos, new Opportunity(id, name, img_loc, date, level, longDecs, shortDesc, dimScore, location));
+                                toDisplay.add(pos, new Opportunity(id, name, img_loc, date, level, longDecs, shortDesc, dimScore, location, category));
                                 children.put(pos, dimScore);
                                 pos++;
                             }
-                            //System.out.println(toDisplay.size() + "**********************************************" + date + " " + name);
                         }
                     }
-                    System.out.println(toDisplay.size() + "**********************************************" + toDisplay.get(pos - 1).getShortDesc() + " " + children.get(pos - 1).toString());
                     lv.setAdapter(new ExpandableListAdapter(toDisplay, children));
                     lv.setGroupIndicator(null);
                 }
@@ -176,14 +171,11 @@ public class CompletedFragment extends Fragment {
 
             String dimentionName = "";
             System.out.println("Child position is : " + childPosition);
-            if (childPosition ==0 ) dimentionName = "Dim 1 :=> ";
-            if (childPosition ==1 ) dimentionName = "Dim 2 :=> ";
-            if (childPosition ==2 ) dimentionName = "Dim 3 :=> ";
-            if (childPosition ==3 ) dimentionName = "Dim 4 :=> ";
-            if (childPosition ==4 ) dimentionName = "Dim 5 :=> ";
-
-            System.out.println("Child position is : " + childPosition + "******************************" + dimentionName);
-
+            if (childPosition ==0 ) dimentionName = "Intellectual Agility: ";
+            if (childPosition ==1 ) dimentionName = "Global Mindset: ";
+            if (childPosition ==2 ) dimentionName = "Social Consciousness and Interpersonal Commitment: ";
+            if (childPosition ==3 ) dimentionName = "Professional and Personal Effectiveness: ";
+            if (childPosition ==4 ) dimentionName = "Well-being: ";
 
             holder.text.setText(dimentionName +getChild(groupPosition, childPosition).toString());
 
@@ -203,6 +195,7 @@ public class CompletedFragment extends Fragment {
                 holder.title = (TextView) convertView.findViewById(R.id.title);
                 holder.img = (ImageView) convertView.findViewById(R.id.icon);
                 holder.pts = (TextView) convertView.findViewById(R.id.pts);
+                holder.cat = (TextView) convertView.findViewById(R.id.category);
                 convertView.setTag(holder);
             } else {
                 holder = (ViewHolder) convertView.getTag();
@@ -213,8 +206,8 @@ public class CompletedFragment extends Fragment {
             holder.date.setText("Date: "+opp.getDate().toString());
             holder.location.setText("Location: "+opp.getLocation().toString());
             holder.pts.setText(opp.getTotScore()+"pts");
+            holder.cat.setText(opp.getCatagory().toUpperCase());
             int id = parent.getContext().getResources().getIdentifier(opp.getImg_loc(), "drawable", parent.getContext().getPackageName());
-            System.out.println("IMAGE FOUND AT ::::::::::::::::::::::::::::::::::" + id);
             holder.img.setScaleType(ImageView.ScaleType.FIT_XY);
             holder.img.setImageResource(id);
 
@@ -232,6 +225,7 @@ public class CompletedFragment extends Fragment {
             TextView location;
             TextView pts;
             ImageView img;
+            TextView cat;
 
         }
 

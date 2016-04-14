@@ -12,18 +12,30 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import com.squareup.picasso.Picasso;
+
 public class EditProfile extends AppCompatActivity {
-    ImageView imageView1;
-    RoundImage roundedImage;
+    ImageView image;
+    String userPic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-        imageView1 = (ImageView) findViewById(R.id.imageView1);
-        Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.profimg2);
-        roundedImage = new RoundImage(bm);
-        imageView1.setImageDrawable(roundedImage);
+
+        image = (ImageView) findViewById(R.id.imageView1);
+        Drive myapp = (Drive) getApplication();
+        userPic= myapp.getPic();
+
+        if (userPic.equals("profimg2")) {
+            Picasso.with(image.getContext()).load(R.drawable.profimg2).transform(new CircleTransform()).into(image);
+        } else if (userPic.equals("profileimg1")) {
+            Picasso.with(image.getContext()).load(R.drawable.profileimg1).transform(new CircleTransform()).into(image);
+        } else { // If picSrc isn't an url, then can't use Picasso
+            Picasso.with(image.getContext()).load(userPic).transform(new CircleTransform())
+                    .into(image);
+        }
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Spinner staticSpinner = (Spinner) findViewById(R.id.static_spinner);
@@ -35,14 +47,10 @@ public class EditProfile extends AppCompatActivity {
                         android.R.layout.simple_spinner_item);
 
         // Specify the layout to use when the list of choices appears
-        staticAdapter
-                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        staticAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // Apply the adapter to the spinner
         staticSpinner.setAdapter(staticAdapter);
-
-
-
     }
 
 }

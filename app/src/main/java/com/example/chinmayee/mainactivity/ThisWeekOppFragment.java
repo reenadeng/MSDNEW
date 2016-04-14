@@ -1,5 +1,6 @@
 package com.example.chinmayee.mainactivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
@@ -13,15 +14,14 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
-;
-
-/**
- * Created by Swapnil on 3/24/2016.
- */
-public class ThisWeekOppFragment extends ListFragment {
+public class ThisWeekOppFragment extends ListFragment  {
         private List<Opportunity> toDisplay;
         private Firebase myFirebaseRef;
         private Bundle bundle;
@@ -52,8 +52,12 @@ public class ThisWeekOppFragment extends ListFragment {
                                                 String name = (String) messageSnapshot.child("name").getValue();
                                                 String category = (String) messageSnapshot.child("category").getValue();
                                                 String catFilter = bundle.getString("filter");
-                                                if (catFilter == "" || catFilter.equals(category))
-                                                        toDisplay.add(new Opportunity(id, name, img_loc, date, level, longDecs, shortDesc, dimScore, location));
+                                                try {
+                                                        if ((catFilter == "" || shortDesc.toUpperCase().contains(catFilter.toUpperCase()))&& calDate(date))
+                                                                toDisplay.add(new Opportunity(id, name, img_loc, date, level, longDecs, shortDesc, dimScore, location, category));
+                                                } catch (ParseException e) {
+                                                        e.printStackTrace();
+                                                }
                                         }
                                 }
                                 CustomeAdapter adapter = new CustomeAdapter(getActivity(), toDisplay);
@@ -66,8 +70,30 @@ public class ThisWeekOppFragment extends ListFragment {
                 return rootView;
         }
 
+        private boolean calDate(String d3) throws ParseException {
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy, h:mm a");
+                Calendar c = Calendar.getInstance();
+                Calendar c3 = Calendar.getInstance();
+                Date date3 = sdf.parse(d3);
+                c3.setTime(date3);
+                c.setTime(new Date()); // Now use today date.
+                c.add(Calendar.DATE, 7); // Adding 7 days
+                int diffInDays =
+                        (int) (c.getTimeInMillis() - c3.getTimeInMillis()) / (1000 * 60 * 60 *
+                                24);
+                if (diffInDays <= 7 && diffInDays > 0)
+                        return true;
+                else
+                        return false;
+        }
+
         @Override
         public void onListItemClick(ListView l, View v, int position, long id) {
-                Toast.makeText(getActivity(),getListView().getItemAtPosition(position).toString(),Toast.LENGTH_SHORT ).show();
+                Intent i = new Intent(getActivity().getApplicationContext(), OppDetail.class);
+                Bundle b = new Bundle();
+                b.putInt("oppId", toDisplay.get(position).getId()); //Your id
+                b.putString("userLevel", bundle.getString("userLevel"));
+                i.putExtras(b); //Put your id to your next Intent
+                startActivity(i);
         }
 }

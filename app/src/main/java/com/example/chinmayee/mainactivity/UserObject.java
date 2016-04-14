@@ -3,9 +3,6 @@ package com.example.chinmayee.mainactivity;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by Swapnil on 4/2/2016.
- */
 public class UserObject {
     private int id;
     private String about;

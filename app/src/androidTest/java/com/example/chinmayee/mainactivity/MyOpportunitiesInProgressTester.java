@@ -70,15 +70,15 @@ public class MyOpportunitiesInProgressTester extends InstrumentationTestCase {
         menuBanner.click();
 
 
-        device.wait(Until.hasObject(By.text("INPROGRESS")), 10000);
-        UiObject2 opp = device.findObject(By.text("INPROGRESS"));
+        device.wait(Until.hasObject(By.text("IN PROGRESS")), 10000);
+        UiObject2 opp = device.findObject(By.text("IN PROGRESS"));
         opp.click();
 
 
         device.waitForIdle(5000);
         //  UiObject2 resultText = device.findObject(By.clazz("android.widget.EditText"));
         String result = opp.getText();
-        assertTrue(result.equals("INPROGRESS"));
+        assertTrue(result.equals("IN PROGRESS"));
     }
     public void testAdd() throws Exception {
 

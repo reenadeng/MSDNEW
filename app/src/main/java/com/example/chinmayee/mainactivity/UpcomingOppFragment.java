@@ -1,5 +1,6 @@
 package com.example.chinmayee.mainactivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
@@ -16,9 +17,6 @@ import com.firebase.client.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Swapnil on 3/24/2016.
- */
 public class UpcomingOppFragment extends ListFragment {
     private List<Opportunity> toDisplay;
     private Firebase myFirebaseRef = new Firebase("https://flickering-inferno-293.firebaseio.com/");
@@ -68,8 +66,9 @@ public class UpcomingOppFragment extends ListFragment {
                             }
                             String date = (String) messageSnapshot.child("start date").getValue();
                             String name = (String) messageSnapshot.child("name").getValue();
+                            String category = (String) messageSnapshot.child("category").getValue();
                             if (upcoming.contains(id))
-                                toDisplay.add(new Opportunity(id, name, img_loc, date, level, longDecs, shortDesc, dimScore, location));
+                                toDisplay.add(new Opportunity(id, name, img_loc, date, level, longDecs, shortDesc, dimScore, location, category));
                         }
                     }
                     CustomeAdapter adapter = new CustomeAdapter(getActivity(), toDisplay);
@@ -85,7 +84,13 @@ public class UpcomingOppFragment extends ListFragment {
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        Toast.makeText(getActivity(),getListView().getItemAtPosition(position).toString(),Toast.LENGTH_SHORT ).show();
+        Intent i = new Intent(getActivity().getApplicationContext(), OppDetail.class);
+        Bundle b = new Bundle();
+        b.putInt("oppId", toDisplay.get(position).getId()); //Your id
+        b.putString("userLevel", bundle.getString("userLevel"));
+        b.putBoolean("isComplete", true);
+        i.putExtras(b); //Put your id to your next Intent
+        startActivity(i);
     }
 
 }
