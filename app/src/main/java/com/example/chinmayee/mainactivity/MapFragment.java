@@ -9,7 +9,8 @@ import android.view.ViewGroup;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.MapsInitializer;
+//import com.google.android.gms.maps.model.Marker;
+//import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
@@ -22,6 +23,8 @@ public class MapFragment extends Fragment {
 
     MapView mMapView;
     private GoogleMap googleMap;
+    private static final LatLng MOUNTAIN_VIEW = new LatLng(37.4067, -122.1);
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,24 +33,25 @@ public class MapFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_map, container,
                 false);
         mMapView = (MapView) v.findViewById(R.id.mapView);
+        v.findViewById(R.id.mapView).getLayoutParams().width =1000;
         mMapView.onCreate(savedInstanceState);
 
         mMapView.onResume();// needed to get the map to display immediately
 
         try {
-            MapsInitializer.initialize(getActivity().getApplicationContext());
+            // MapsInitializer.initialize(getActivity().getApplicationContext());
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+
         googleMap = mMapView.getMap();
-        // latitude and longitude
-        double latitude = 17.385044;
-        double longitude = 78.486671;
+
+
 
         // create marker
         MarkerOptions marker = new MarkerOptions().position(
-                new LatLng(latitude, longitude)).title("Hello Maps");
+                new LatLng(37.4067352, -122.0880733)).title("Hello Maps");
 
         // Changing marker icon
         marker.icon(BitmapDescriptorFactory
@@ -55,12 +59,27 @@ public class MapFragment extends Fragment {
 
         // adding marker
         googleMap.addMarker(marker);
-        CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(new LatLng(17.385044, 78.486671)).zoom(12).build();
-        googleMap.animateCamera(CameraUpdateFactory
-                .newCameraPosition(cameraPosition));
 
         // Perform any camera updates here
+        CameraPosition cameraPosition = new CameraPosition.Builder()
+                .target(MOUNTAIN_VIEW)
+                .zoom(15)
+                .bearing(90)
+                .tilt(30)
+                .build();
+        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        MarkerOptions marker1 = new MarkerOptions().position(
+                new LatLng(37.4067352, -122.0880733)).title("Hello Maps");
+
+        // Changing marker icon
+        marker1.icon(BitmapDescriptorFactory
+                .defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
+
+        // adding marker
+        googleMap.addMarker(marker1);
+
+
+
         return v;
     }
 
@@ -68,6 +87,7 @@ public class MapFragment extends Fragment {
     public void onResume() {
         super.onResume();
         mMapView.onResume();
+
     }
 
     @Override
