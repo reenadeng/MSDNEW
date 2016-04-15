@@ -80,7 +80,7 @@ public class OppDetail extends AppCompatActivity {
         cBtnFlag = bundle.getBoolean("isComplete");
         starCounter = bundle.getBoolean("isSaved");
         oppID = getIntent().getExtras().getInt("oppId");
-        mFBRef = new Firebase(new Drive().getFirebaseURL());
+        mFBRef = new Firebase("https://flickering-inferno-293.firebaseio.com/");
         mText1 = (TextView) findViewById(R.id.oppDate);
         mText2 = (TextView) findViewById(R.id.oppName);
         mText3 = (TextView) findViewById(R.id.oppDes);
@@ -115,11 +115,35 @@ public class OppDetail extends AppCompatActivity {
             public void onClick(View v) {
             if (!starCounter) {
                 starBtn.setImageResource(android.R.drawable.btn_star_big_on);
-                Toast.makeText(getApplicationContext(), "Added to favorite.", Toast.LENGTH_LONG).show();
+                alertDialog = new AlertDialog.Builder(OppDetail.this).create();
+                alertDialog.setTitle("Added");
+                alertDialog.setMessage("Successfully Added to Favorites !!!");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+
+
+              //  Toast.makeText(getApplicationContext(), "Added to favorite.", Toast.LENGTH_LONG).show();
                 starCounter = true;
             } else {
                 starBtn.setImageResource(android.R.drawable.btn_star_big_off);
-                Toast.makeText(getApplicationContext(), "Removed from favorite.", Toast.LENGTH_LONG).show();
+
+                alertDialog = new AlertDialog.Builder(OppDetail.this).create();
+                alertDialog.setTitle("Removed");
+                alertDialog.setMessage("Successfully Removed from Favorites !!!");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                alertDialog.show();
+
+              //  Toast.makeText(getApplicationContext(), "Removed from favorite.", Toast.LENGTH_LONG).show();
                 starCounter = false;
             }
             }

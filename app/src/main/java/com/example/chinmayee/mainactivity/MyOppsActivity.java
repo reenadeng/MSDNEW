@@ -93,12 +93,6 @@ public class MyOppsActivity extends AppCompatActivity {
                 startActivity(intent);
                 //  startActivity(new Intent(this, Item3Activity.class));
                 break;
-            case 4:
-                // startActivity(new Intent(this, Item4Activity.class));
-                break;
-            case 5:
-                // startActivity(new Intent(this, Item5Activity.class));
-                break;
 
             default:
                 break;
