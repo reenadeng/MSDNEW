@@ -80,7 +80,7 @@ public class OppDetail extends AppCompatActivity {
         cBtnFlag = bundle.getBoolean("isComplete");
         starCounter = bundle.getBoolean("isSaved");
         oppID = getIntent().getExtras().getInt("oppId");
-        mFBRef = new Firebase("https://flickering-inferno-293.firebaseio.com/");
+        mFBRef = new Firebase(new Drive().getFirebaseURL());
         mText1 = (TextView) findViewById(R.id.oppDate);
         mText2 = (TextView) findViewById(R.id.oppName);
         mText3 = (TextView) findViewById(R.id.oppDes);

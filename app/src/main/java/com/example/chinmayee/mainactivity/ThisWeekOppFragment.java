@@ -28,7 +28,7 @@ public class ThisWeekOppFragment extends ListFragment  {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
                 View rootView = inflater.inflate(R.layout.this_week_opportunities, container, false);
-                myFirebaseRef = new Firebase("https://flickering-inferno-293.firebaseio.com/");
+                myFirebaseRef = new Firebase(new Drive().getFirebaseURL());
                 myFirebaseRef.child("opportunity").addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot snapshot) {

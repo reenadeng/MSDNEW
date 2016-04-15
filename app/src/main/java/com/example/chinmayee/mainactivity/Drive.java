@@ -9,6 +9,18 @@ public class Drive extends Application {
     private String level;
     private String pic;
 
+
+    private String firebaseURL;
+
+
+    public String getFirebaseURL() {
+        return "https://flickering-inferno-293.firebaseio.com/";
+    }
+
+    public void setFirebaseURL(String firebaseURL) {
+        this.firebaseURL = firebaseURL;
+    }
+
     public String getUserId() {
         return userId;
     }

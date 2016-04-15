@@ -19,7 +19,7 @@ import java.util.List;
 
 public class SavedOppFragment extends ListFragment {
     private List<Opportunity> toDisplay;
-    private Firebase myFirebaseRef = new Firebase("https://flickering-inferno-293.firebaseio.com/");
+    private Firebase myFirebaseRef = new Firebase(new Drive().getFirebaseURL());
     private Bundle bundle;
     private final List<Integer> saved = new ArrayList<Integer>();
     @Override

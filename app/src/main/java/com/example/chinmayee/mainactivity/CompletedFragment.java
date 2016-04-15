@@ -26,7 +26,7 @@ public class CompletedFragment extends Fragment {
     ExpandableListView lv;
     private List<Opportunity> toDisplay;
     private Map<Integer, Integer[]> children;
-    private Firebase myFirebaseRef = new Firebase("https://flickering-inferno-293.firebaseio.com/");
+    private Firebase myFirebaseRef = new Firebase(new Drive().getFirebaseURL());
     private Bundle bundle;
     private final List<Integer> completed = new ArrayList<Integer>();
     public CompletedFragment(){

@@ -23,7 +23,9 @@ import java.util.List;
 public class AllOppFragment extends ListFragment {
 
     private List<Opportunity> toDisplay;
-    private Firebase myFirebaseRef = new Firebase("https://flickering-inferno-293.firebaseio.com/");
+
+    private Firebase myFirebaseRef = new Firebase(new Drive().getFirebaseURL());
+
     private Bundle bundle;
 
     @Override

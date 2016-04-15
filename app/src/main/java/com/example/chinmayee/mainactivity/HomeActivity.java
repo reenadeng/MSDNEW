@@ -51,7 +51,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Firebase.setAndroidContext(this);
-        myFirebaseRef = new Firebase("https://flickering-inferno-293.firebaseio.com/");
+        myFirebaseRef = new Firebase(new Drive().getFirebaseURL());
         setupTablayout();
         setupSearch();
         setupButtonsAction();
@@ -393,7 +393,7 @@ public class HomeActivity extends AppCompatActivity {
                 });
 
                 final int nextScore = sumScore;
-                Firebase getLevelScore = new Firebase("https://flickering-inferno-293.firebaseio.com/level/" + lev.toString());
+                Firebase getLevelScore = new Firebase(new Drive().getFirebaseURL()+"level/" + lev.toString());
                 getLevelScore.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {

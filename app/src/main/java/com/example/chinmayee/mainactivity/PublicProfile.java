@@ -25,7 +25,7 @@ public class PublicProfile extends AppCompatActivity {
         setContentView(R.layout.activity_public_profile);
         Firebase.setAndroidContext(this);
         userID = getIntent().getExtras().getString("otherUserId");
-        Firebase mFBRef = new Firebase("https://flickering-inferno-293.firebaseio.com/");
+        Firebase mFBRef = new Firebase(new Drive().getFirebaseURL());
         image = (ImageView) findViewById(R.id.imageView1);
         mText1 = (TextView) findViewById(R.id.userName);
         mText2 = (TextView) findViewById(R.id.userLevel);

@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        mFBRef = new Firebase("https://flickering-inferno-293.firebaseio.com/");
+        mFBRef = new Firebase(new Drive().getFirebaseURL());
         image = (ImageView) findViewById(R.id.imageView1);
         mText1 = (TextView) findViewById(R.id.userName);
         mText2 = (TextView) findViewById(R.id.bio);
