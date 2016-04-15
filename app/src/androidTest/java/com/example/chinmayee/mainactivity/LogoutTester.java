@@ -14,7 +14,7 @@ import android.util.Log;
 
 
 //Click an opportynity on home page to go opportunity details page
-public class MenuToMyInfoTester extends InstrumentationTestCase {
+public class LogoutTester extends InstrumentationTestCase {
 
     private UiDevice device;
 
@@ -65,17 +65,17 @@ public class MenuToMyInfoTester extends InstrumentationTestCase {
       //          .scrollable(true));
        // appViews.swipeLeft(1000);
 
-        device.wait(Until.hasObject(By.text("HOME")), 3000);
-        UiObject menuBanner = device.findObject(new UiSelector().resourceId("com.example.chinmayee.mainactivity:id/buttonTransparent1"));
+        device.wait(Until.hasObject(By.text("MY OPPORTUNITIES")), 3000);
+        UiObject menuBanner = device.findObject(new UiSelector().resourceId("com.example.chinmayee.mainactivity:id/buttonTrans2"));
         menuBanner.click();
 
 
-        device.wait(Until.hasObject(By.text("MY INFO")), 8000);
-        UiObject2 myinfoBanner = device.findObject(By.text("MY INFO"));
-        device.waitForIdle(8000);
+        device.wait(Until.hasObject(By.text("Login")), 5000);
+        UiObject2 myinfoBanner = device.findObject(By.text("Login"));
+        device.waitForIdle(5000);
         //  UiObject2 resultText = device.findObject(By.clazz("android.widget.EditText"));
         String result = myinfoBanner.getText();
-        assertTrue(result.equals("MY INFO"));
+        assertTrue(result.equals("Login"));
     }
     public void testAdd() throws Exception {
 

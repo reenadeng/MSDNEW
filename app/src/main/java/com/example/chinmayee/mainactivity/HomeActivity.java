@@ -392,6 +392,16 @@ public class HomeActivity extends AppCompatActivity {
                     }
                 });
 
+
+                Button trans2 = (Button)findViewById(R.id.buttonTrans2);
+                trans2.setOnClickListener(new OnClickListener() {
+                    public void onClick(View arg0) {
+                        Intent intent = new Intent(getApplicationContext(), Login.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                    }
+                });
+
                 final int nextScore = sumScore;
                 Firebase getLevelScore = new Firebase(new Drive().getFirebaseURL()+"level/" + lev.toString());
                 getLevelScore.addValueEventListener(new ValueEventListener() {

@@ -124,6 +124,14 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/searchView"
                 />
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:text=""
+                android:id="@+id/buttonTrans2" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
