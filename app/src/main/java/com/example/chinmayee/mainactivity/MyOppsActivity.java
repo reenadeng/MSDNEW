@@ -88,6 +88,9 @@ public class MyOppsActivity extends AppCompatActivity {
                 startActivity(new Intent(this, MyOppsActivity.class));
                 break;
             case 3:
+                Intent intent = new Intent(getApplicationContext(), Login.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 //  startActivity(new Intent(this, Item3Activity.class));
                 break;
             case 4:
