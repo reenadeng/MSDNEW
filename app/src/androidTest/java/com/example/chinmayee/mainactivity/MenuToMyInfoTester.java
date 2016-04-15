@@ -34,8 +34,8 @@ public class MenuToMyInfoTester extends InstrumentationTestCase {
            Log.d("exception",e.getMessage());
         }
         device.pressHome();
-        device.wait(Until.hasObject(By.desc("Apps")), 3000);
-        UiObject2 appsButton = device.findObject(By.desc("Apps"));
+        device.wait(Until.hasObject(By.desc("All apps")), 3000);
+        UiObject2 appsButton = device.findObject(By.desc("All apps"));
         appsButton.click();
 
         //wait till app is on screen

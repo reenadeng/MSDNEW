@@ -14,8 +14,6 @@ import android.util.Log;
 
 public class OppExplorerTester extends InstrumentationTestCase {
     private UiDevice device;
-
-
     @Override
     public void setUp() throws Exception {
         super.setUp();
@@ -29,8 +27,8 @@ public class OppExplorerTester extends InstrumentationTestCase {
             Log.d("exception", e.getMessage());
         }
         device.pressHome();
-        device.wait(Until.hasObject(By.desc("Apps")), 3000);
-        UiObject2 appsButton = device.findObject(By.desc("Apps"));
+        device.wait(Until.hasObject(By.desc("All apps")), 3000);
+        UiObject2 appsButton = device.findObject(By.desc("All apps"));
         appsButton.click();
 
 
@@ -56,16 +54,25 @@ public class OppExplorerTester extends InstrumentationTestCase {
         device.wait(Until.hasObject(By.text("REGISTER")), 5000);
         UiObject2 registerButton = device.findObject(By.text("REGISTER"));
 
-        //  UiObject2 resultText = device.findObject(By.clazz("android.widget.EditText"));
         String result = registerButton.getText();
         assertTrue(result.equals("REGISTER"));
+
+        registerButton.click();
+
+        device.wait(Until.hasObject(By.text("OK")), 5000);
+        UiObject2 ok = device.findObject(By.text("OK"));
+        ok.click();
+
+        device.wait(Until.hasObject(By.text("MARK COMPLETE")), 5000);
+        UiObject2 comp = device.findObject(By.text("MARK COMPLETE"));
+
+        String complete = comp.getText();
+        assertTrue(complete.equals("MARK COMPLETE"));
+        comp.click();
+        device.wait(Until.hasObject(By.text("OK")), 5000);
+        UiObject2 ok1 = device.findObject(By.text("OK"));
+        ok1.click();
     }
     public void testAdd() throws Exception {
-
-
     }
-
-
 }
-
-

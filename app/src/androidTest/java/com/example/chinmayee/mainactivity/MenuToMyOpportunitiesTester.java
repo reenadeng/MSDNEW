@@ -36,8 +36,8 @@ public class MenuToMyOpportunitiesTester extends InstrumentationTestCase {
            Log.d("exception",e.getMessage());
         }
         device.pressHome();
-        device.wait(Until.hasObject(By.desc("Apps")), 3000);
-        UiObject2 appsButton = device.findObject(By.desc("Apps"));
+        device.wait(Until.hasObject(By.desc("All apps")), 3000);
+        UiObject2 appsButton = device.findObject(By.desc("All apps"));
         appsButton.click();
 
         //wait till app is on screen
@@ -67,7 +67,7 @@ public class MenuToMyOpportunitiesTester extends InstrumentationTestCase {
       //          .scrollable(true));
        // appViews.swipeLeft(1000);
 
-        device.wait(Until.hasObject(By.text("MY OPPORTUNITIES")), 3000);
+        device.wait(Until.hasObject(By.text("MY OPPORTUNITIES")), 7000);
         UiObject menuBanner = device.findObject(new UiSelector().resourceId("com.example.chinmayee.mainactivity:id/buttonTransparent"));
         menuBanner.click();
 
