@@ -91,6 +91,7 @@ public class SavedOppFragment extends ListFragment {
         b.putBoolean("isComplete", false);
         b.putBoolean("isSaved", true);
         i.putExtras(b); //Put your id to your next Intent
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
     }
 }

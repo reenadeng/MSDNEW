@@ -99,13 +99,19 @@ public class HomeActivity extends AppCompatActivity {
 
         switch (position) {
             case 0:
-                startActivity(new Intent(this, HomeActivity.class));
+               // startActivity(new Intent(this, HomeActivity.class));
                 break;
             case 1:
-                startActivity(new Intent(this, MainActivity.class));
+                Intent i1 = new Intent(getApplicationContext(), MainActivity.class);
+                i1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i1);
+                //startActivity(new Intent(this, MainActivity.class));
                 break;
             case 2:
-                startActivity(new Intent(this, MyOppsActivity.class));
+                Intent i2 = new Intent(getApplicationContext(), MyOppsActivity.class);
+                i2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i2);
+               // startActivity(new Intent(this, MyOppsActivity.class));
                 break;
             case 3:
                 Intent intent = new Intent(getApplicationContext(), Login.class);
@@ -206,6 +212,7 @@ public class HomeActivity extends AppCompatActivity {
                 b.putString("filter", "workshop"); //Your id
                 b.putString("userLevel", userLevel);
                 myIntent.putExtras(b); //Put your id to your next Intent
+                myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(myIntent);
             }
         });
@@ -218,6 +225,7 @@ public class HomeActivity extends AppCompatActivity {
                 b.putString("filter", "talk"); //Your id
                 b.putString("userLevel", userLevel);
                 myIntent.putExtras(b); //Put your id to your next Intent
+                myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(myIntent);
             }
         });
@@ -230,6 +238,7 @@ public class HomeActivity extends AppCompatActivity {
                 b.putString("filter", "coop"); //Your id
                 b.putString("userLevel", userLevel);
                 myIntent.putExtras(b); //Put your id to your next Intent
+                myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(myIntent);
             }
         });
@@ -242,6 +251,7 @@ public class HomeActivity extends AppCompatActivity {
                 b.putString("filter", "volunteering"); //Your id
                 b.putString("userLevel", userLevel);
                 myIntent.putExtras(b); //Put your id to your next Intent
+                myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(myIntent);
             }
         });
@@ -254,6 +264,7 @@ public class HomeActivity extends AppCompatActivity {
                 b.putString("filter", "club_membership"); //Your id
                 b.putString("userLevel", userLevel);
                 myIntent.putExtras(b); //Put your id to your next Intent
+                myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(myIntent);
             }
         });
@@ -266,6 +277,7 @@ public class HomeActivity extends AppCompatActivity {
                 b.putString("filter", "hack-a-thon"); //Your id
                 b.putString("userLevel", userLevel);
                 myIntent.putExtras(b); //Put your id to your next Intent
+                myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(myIntent);
             }
         });
@@ -301,6 +313,7 @@ public class HomeActivity extends AppCompatActivity {
                 b.putBoolean("isComplete", false);
                 myIntent.putExtras(b); //Put your id to your next Intent
                 startActivity(myIntent);
+                myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 return false;
             }
 
@@ -371,6 +384,7 @@ public class HomeActivity extends AppCompatActivity {
                 star.setOnClickListener(new OnClickListener() {
                     public void onClick(View arg0) {
                         Intent myIntent = new Intent(HomeActivity.this, MainActivity.class);
+                        myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(myIntent);
                     }
                 });

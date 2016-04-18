@@ -90,6 +90,7 @@ public class UpcomingOppFragment extends ListFragment {
         b.putString("userLevel", bundle.getString("userLevel"));
         b.putBoolean("isComplete", true);
         i.putExtras(b); //Put your id to your next Intent
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
     }
 

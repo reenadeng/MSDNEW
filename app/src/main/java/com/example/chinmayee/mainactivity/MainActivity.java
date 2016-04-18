@@ -256,13 +256,19 @@ public class MainActivity extends AppCompatActivity {
 
         switch (position) {
             case 0:
-                startActivity(new Intent(this, HomeActivity.class));
+                Intent i1 = new Intent(getApplicationContext(), HomeActivity.class);
+                i1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i1);
+                //startActivity(new Intent(this, HomeActivity.class));
                 break;
             case 1:
-                startActivity(new Intent(this, MainActivity.class));
+              //  startActivity(new Intent(this, MainActivity.class));
                 break;
             case 2:
-                startActivity(new Intent(this, MyOppsActivity.class));
+                Intent i2 = new Intent(getApplicationContext(), MyOppsActivity.class);
+                i2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i2);
+              //  startActivity(new Intent(this, MyOppsActivity.class));
                 break;
             case 3:
                 Intent intent = new Intent(getApplicationContext(), Login.class);

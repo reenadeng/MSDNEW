@@ -70,6 +70,7 @@ public class RecomOppFragment extends ListFragment {
         b.putInt("oppId", toDisplay.get(position).getId()); //Your id
         b.putString("userLevel", bundle.getString("userLevel"));
         i.putExtras(b); //Put your id to your next Intent
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
     }
 

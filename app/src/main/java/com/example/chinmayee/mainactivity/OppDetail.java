@@ -28,6 +28,7 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+import com.plattysoft.leonids.ParticleSystem;
 import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
@@ -113,7 +114,14 @@ public class OppDetail extends AppCompatActivity {
 
         starBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
+
+
             if (!starCounter) {
+                new ParticleSystem(OppDetail.this, 100, R.drawable.star_small, 1500)
+                        .setSpeedRange(0.1f, 0.25f)
+                        .oneShot(v, 50);
+
                 starBtn.setImageResource(android.R.drawable.btn_star_big_on);
                 alertDialog = new AlertDialog.Builder(OppDetail.this).create();
                 alertDialog.setTitle("Added");
@@ -124,12 +132,15 @@ public class OppDetail extends AppCompatActivity {
                                 dialog.dismiss();
                             }
                         });
-                alertDialog.show();
+          //      alertDialog.show();
 
 
-              //  Toast.makeText(getApplicationContext(), "Added to favorite.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Added to favorites", Toast.LENGTH_LONG).show();
                 starCounter = true;
             } else {
+                new ParticleSystem(OppDetail.this, 100, R.drawable.dust, 1500)
+                        .setSpeedRange(0.1f, 0.25f)
+                        .oneShot(v, 50);
                 starBtn.setImageResource(android.R.drawable.btn_star_big_off);
 
                 alertDialog = new AlertDialog.Builder(OppDetail.this).create();
@@ -141,9 +152,9 @@ public class OppDetail extends AppCompatActivity {
                                 dialog.dismiss();
                             }
                         });
-                alertDialog.show();
+//                alertDialog.show();
 
-              //  Toast.makeText(getApplicationContext(), "Removed from favorite.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Removed from favorites", Toast.LENGTH_LONG).show();
                 starCounter = false;
             }
             }
@@ -192,6 +203,9 @@ public class OppDetail extends AppCompatActivity {
                         alertDialog = new AlertDialog.Builder(OppDetail.this).create();
                     // When button first got click
                     if (!cBtnFlag) { // Change the buttonText into completed
+                        new ParticleSystem(OppDetail.this, 100, R.drawable.blue_star, 800)
+                                .setSpeedRange(0.1f, 0.25f)
+                                .oneShot(v, 100);
                         mButton.setText("MARK COMPLETE");
                         // Change the button color
                         mButton.setBackgroundColor(0xFFFF0000);
@@ -216,6 +230,20 @@ public class OppDetail extends AppCompatActivity {
                                 });
                         alertDialog.show();
                     } else { // Click it after the end Date
+                        new ParticleSystem(OppDetail.this, 100, R.drawable.star_pink, 800)
+                                .setSpeedRange(0.1f, 0.25f)
+                                .oneShot(v, 100);
+                        new ParticleSystem(OppDetail.this, 80, R.drawable.confeti2, 5000)
+                                .setSpeedModuleAndAngleRange(0f, 0.1f, 180, 180)
+                                .setRotationSpeed(144)
+                                .setAcceleration(0.000017f, 90)
+                                .emit(findViewById(R.id.emiter_top_right), 8);
+
+                        new ParticleSystem(OppDetail.this, 80, R.drawable.confeti3, 5000)
+                                .setSpeedModuleAndAngleRange(0f, 0.1f, 0, 0)
+                                .setRotationSpeed(144)
+                                .setAcceleration(0.000017f, 90)
+                                .emit(findViewById(R.id.emiter_top_left), 8);
                         mButton.setVisibility(View.GONE);
                         AlertDialog alertDialog = new AlertDialog.Builder(OppDetail.this).create();
                         alertDialog.setTitle("SUCCESS");
@@ -278,13 +306,22 @@ public class OppDetail extends AppCompatActivity {
 
         switch (position) {
             case 0:
-                startActivity(new Intent(this, HomeActivity.class));
+                Intent i1 = new Intent(getApplicationContext(), HomeActivity.class);
+                i1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i1);
+                //startActivity(new Intent(this, HomeActivity.class));
                 break;
             case 1:
-                startActivity(new Intent(this, MainActivity.class));
+                Intent i2 = new Intent(getApplicationContext(), MainActivity.class);
+                i2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i2);
+                //startActivity(new Intent(this, MainActivity.class));
                 break;
             case 2:
-                startActivity(new Intent(this, MyOppsActivity.class));
+                Intent i3 = new Intent(getApplicationContext(), MyOppsActivity.class);
+                i3.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i3);
+            //    startActivity(new Intent(this, MyOppsActivity.class));
                 break;
             case 3:
                 Intent intent = new Intent(getApplicationContext(), Login.class);
@@ -404,6 +441,7 @@ public class OppDetail extends AppCompatActivity {
                             Bundle b = new Bundle();
                             b.putString("otherUserId", p.getId());
                             myIntent.putExtras(b); //Put your id to your next Intent
+                            myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(myIntent);
                         }
                     });
@@ -467,6 +505,7 @@ public class OppDetail extends AppCompatActivity {
                         b.putString("userLevel", bundle.getString("userLevel"));
                         b.putBoolean("isComplete", false);
                         myIntent.putExtras(b); //Put your id to your next Intent
+                        myIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(myIntent);
                         }
                     });

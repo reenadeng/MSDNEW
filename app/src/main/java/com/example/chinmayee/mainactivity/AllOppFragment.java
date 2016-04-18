@@ -76,6 +76,7 @@ public class AllOppFragment extends ListFragment {
         b.putInt("oppId", toDisplay.get(position).getId()); //Your id
         b.putString("userLevel", "1");
         i.putExtras(b); //Put your id to your next Intent
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
         //Toast.makeText(getActivity(),getListView().getItemAtPosition(position).toString(),Toast.LENGTH_SHORT ).show();
     }
