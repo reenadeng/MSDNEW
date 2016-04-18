@@ -44,6 +44,7 @@ public class OppDetail extends AppCompatActivity {
     private TextView mText3;
     private TextView mText4;
     private TextView mText5;
+    private TextView score;
     private Button mButton;
     private Integer oppID;
     private ImageButton starBtn;
@@ -89,6 +90,7 @@ public class OppDetail extends AppCompatActivity {
         image = (ImageView) findViewById(R.id.image);
         mText5 = (TextView) findViewById(R.id.oppContact);
         mButton = (Button) findViewById(R.id.mButton);
+        score = (TextView) findViewById(R.id.score);
         starBtn = (ImageButton) findViewById(R.id.favorite_button);
         Drive myapp = (Drive) getApplication();
         userId= myapp.getUserId();
@@ -176,6 +178,20 @@ public class OppDetail extends AppCompatActivity {
                 mText3.setText((String) postSnapshot.child("longDesc").getValue());
                 mText4.setText((String) postSnapshot.child("location").getValue());
                 mText5.setText((String) postSnapshot.child("contact").getValue());
+                int sumScore=0;
+                Integer[] dimScore = new Integer[5];
+
+                for (int j=1; j<6; j++) {
+                    dimScore[j - 1] = Integer.parseInt((String) postSnapshot.child("score").child("d" + j).getValue());
+                    sumScore += dimScore[j - 1];
+                }
+                String dimStr = "SCORE: " + Integer.toString(sumScore)+ "\n-----------";
+                dimStr += "\n   Intellectual Agility: " + dimScore[0].toString();
+                dimStr += "\n   Global Mindset: "+ dimScore[1].toString();
+                dimStr += "\n   Social Consciousness and Interpersonal Commitment: "+ dimScore[2].toString();
+                dimStr +=  "\n   Professional and Personal Effectiveness: "+ dimScore[3].toString();
+                dimStr +=  "\n   Well-being: "+ dimScore[4].toString();
+                score.setText(dimStr);
                 edate = (String) postSnapshot.child("end date").getValue();
 
                 // Check date/time

@@ -1,7 +1,7 @@
 <resources>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
-    <string name="app_name">HOLA</string>
+    <string name="app_name">H.O.L.A.</string>
     <string name="action_settings">Settings</string>
     <string name="name_label">Name:</string>
     <string name="actual_name">John Doe</string>

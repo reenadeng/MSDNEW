@@ -64,6 +64,8 @@
                 android:textStyle="bold"
                 android:textColor="#000000"/>
 
+
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -114,6 +116,15 @@
                 android:layout_marginLeft="333dp"
                 class="com.example.chinmayee.mainactivity.MapFragment"
                 />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40px"
+                android:layout_marginRight="10px"
+                android:textSize="12dp"
+                android:textColor="#000000"
+                android:id="@+id/score" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
