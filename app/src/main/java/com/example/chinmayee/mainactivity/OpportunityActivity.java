@@ -88,6 +88,9 @@ public class OpportunityActivity extends AppCompatActivity {
             //    startActivity(new Intent(this, MainActivity.class));
                 break;
             case 2:
+                Intent i3 = new Intent(getApplicationContext(), OpportunityActivity.class);
+                i3.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i3);
               //  startActivity(new Intent(this, MyOppsActivity.class));
                 break;
             case 3:
