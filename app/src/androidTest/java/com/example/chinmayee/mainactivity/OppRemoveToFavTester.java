@@ -23,20 +23,20 @@ public class OppRemoveToFavTester extends InstrumentationTestCase {
         device.pressHome();
         device.pressRecentApps();
         try {
-            UiObject close = device.findObject(new UiSelector().description("Dismiss CATLR."));
+            UiObject close = device.findObject(new UiSelector().description("Dismiss H.O.L.A.."));
             close.click();
         }catch (Exception e){
             Log.d("exception", e.getMessage());
         }
         device.pressHome();
-        device.wait(Until.hasObject(By.desc("All apps")), 3000);
-        UiObject2 appsButton = device.findObject(By.desc("All apps"));
+        device.wait(Until.hasObject(By.desc("Apps")), 3000);
+        UiObject2 appsButton = device.findObject(By.desc("Apps"));
         appsButton.click();
 
 
         //wait till app is on screen
-        device.wait(Until.hasObject(By.text("CATLR")), 5000);
-        UiObject2 msdApp = device.findObject(By.text("CATLR"));
+        device.wait(Until.hasObject(By.text("H.O.L.A.")), 5000);
+        UiObject2 msdApp = device.findObject(By.text("H.O.L.A."));
         msdApp.click();
 
 
@@ -57,20 +57,20 @@ public class OppRemoveToFavTester extends InstrumentationTestCase {
         UiObject favButton = device.findObject(new UiSelector().resourceId("com.example.chinmayee.mainactivity:id/favorite_button"));
         favButton.click();
 
-        device.wait(Until.hasObject(By.text("OK")), 5000);
-        UiObject2 ok = device.findObject(By.text("OK"));
-        ok.click();
+   //     device.wait(Until.hasObject(By.text("OK")), 5000);
+   //     UiObject2 ok = device.findObject(By.text("OK"));
+   //     ok.click();
 
         device.wait(Until.hasObject(By.text("REGISTER")), 5000);
         UiObject remButton = device.findObject(new UiSelector().resourceId("com.example.chinmayee.mainactivity:id/favorite_button"));
         remButton.click();
 
 
-        device.wait(Until.hasObject(By.text("Removed")), 5000);
-        UiObject2 rem = device.findObject(By.text("Removed"));
+        device.wait(Until.hasObject(By.text("OPPORTUNITY DETAILS")), 5000);
+        UiObject2 rem = device.findObject(By.text("OPPORTUNITY DETAILS"));
         //  UiObject2 resultText = device.findObject(By.clazz("android.widget.EditText"));
         String result = rem.getText();
-        assertTrue(result.equals("Removed"));
+        assertTrue(result.equals("OPPORTUNITY DETAILS"));
     }
     public void testAdd() throws Exception {
 

@@ -24,20 +24,20 @@ public class HomeAllOppTester extends InstrumentationTestCase {
         device.pressHome();
         device.pressRecentApps();
         try {
-            UiObject close = device.findObject(new UiSelector().description("Dismiss CATLR."));
+            UiObject close = device.findObject(new UiSelector().description("Dismiss H.O.L.A.."));
             close.click();
         }catch (Exception e){
             Log.d("exception", e.getMessage());
         }
         device.pressHome();
-        device.wait(Until.hasObject(By.desc("All apps")), 3000);
-        UiObject2 appsButton = device.findObject(By.desc("All apps"));
+        device.wait(Until.hasObject(By.desc("Apps")), 3000);
+        UiObject2 appsButton = device.findObject(By.desc("Apps"));
         appsButton.click();
 
 
         //wait till app is on screen
-        device.wait(Until.hasObject(By.text("CATLR")), 5000);
-        UiObject2 msdApp = device.findObject(By.text("CATLR"));
+        device.wait(Until.hasObject(By.text("H.O.L.A.")), 5000);
+        UiObject2 msdApp = device.findObject(By.text("H.O.L.A."));
         msdApp.click();
 
 
