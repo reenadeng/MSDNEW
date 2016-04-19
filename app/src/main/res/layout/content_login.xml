@@ -18,7 +18,7 @@
         android:id="@+id/loginmsg"
         android:text="H.O.L.A."
         android:textColor="#4044bc"
-        android:layout_marginTop="40px"
+        android:layout_marginTop="100px"
         android:layout_marginLeft="0dp"
         android:textSize="50dp"
         android:textAlignment="center"
@@ -42,7 +42,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="100px"
+        android:layout_marginTop="150px"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/activity_edit_profile"
         android:weightSum="1">
@@ -98,7 +98,7 @@
         android:layout_width="500px"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="80px"
+        android:layout_marginTop="150px"
         android:layout_marginLeft="0px"
         android:layout_weight="0.08" />
 
