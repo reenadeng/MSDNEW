@@ -2,6 +2,12 @@ package com.example.chinmayee.mainactivity;
 
 import android.app.Application;
 
+/**
+ *
+ * Chinmayee Nitin Vaidya, Bhumitra Nagar, Swapnil Mahajan, Xinyan Deng
+ * This is a helper class that stores the user
+ *
+ */
 public class Drive extends Application {
 
     private String userId;

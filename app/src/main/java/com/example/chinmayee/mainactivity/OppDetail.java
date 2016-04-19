@@ -36,6 +36,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+/**
+ *
+ * Chinmayee Nitin Vaidya, Bhumitra Nagar, Swapnil Mahajan, Xinyan Deng
+ * This is the activity that shows the opportunity detail
+ *
+ */
 public class OppDetail extends AppCompatActivity {
     private ImageView image;
     private Firebase mFBRef ;

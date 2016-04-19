@@ -11,7 +11,14 @@ import android.widget.TextView;
 
 import java.util.List;
 
-
+/**
+ *
+ * Chinmayee Nitin Vaidya, Bhumitra Nagar, Swapnil Mahajan, Xinyan Deng
+ * This is A helper class that display opportunities in the right format.
+ * It will be used when you try to create a opportunity list in Home page
+ * and MY OPPORTUNITIES page.
+ *
+ */
 public class CustomeAdapter extends BaseAdapter {
 
     Context context;

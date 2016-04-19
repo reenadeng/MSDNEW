@@ -20,6 +20,12 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * Chinmayee Nitin Vaidya, Bhumitra Nagar, Swapnil Mahajan, Xinyan Deng
+ * This is for the Home page. This fragment is used in Home page, ALL tab
+ *
+ */
 public class AllOppFragment extends ListFragment {
 
     private List<Opportunity> toDisplay;

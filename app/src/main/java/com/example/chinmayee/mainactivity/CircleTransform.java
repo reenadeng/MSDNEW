@@ -7,6 +7,13 @@ import android.graphics.Paint;
 
 import com.squareup.picasso.Transformation;
 
+/**
+ *
+ * Chinmayee Nitin Vaidya, Bhumitra Nagar, Swapnil Mahajan, Xinyan Deng
+ * This is helper class that create a round image.
+ * Picasso.with(...).load(...).transform(new CircleTransform()).into(...);
+ *
+ */
 public class CircleTransform implements Transformation {
     @Override
     public Bitmap transform(Bitmap source) {

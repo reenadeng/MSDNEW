@@ -20,6 +20,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ *
+ * Chinmayee Nitin Vaidya, Bhumitra Nagar, Swapnil Mahajan, Xinyan Deng
+ * This is for the MY OPPORTUNITIES page. This fragment is used in MY OPPORTUNITIES page,
+ * COMPLETED tab
+ *
+ */
 public class CompletedFragment extends Fragment {
 
     View rootView;
