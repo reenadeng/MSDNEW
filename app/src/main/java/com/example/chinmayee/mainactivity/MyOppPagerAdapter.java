@@ -5,7 +5,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-
+/**
+ *
+ * Chinmayee Nitin Vaidya, Bhumitra Nagar, Swapnil Mahajan, Xinyan Deng
+ * This is a helper class that display opportunities in the right format.
+ * It will be used when you try to create a opportunity list in MY OPPORTUNITY page.
+ *
+ */
 public class MyOppPagerAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;
     Bundle bundle;

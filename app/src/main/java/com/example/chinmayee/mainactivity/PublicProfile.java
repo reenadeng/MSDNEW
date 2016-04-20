@@ -11,7 +11,12 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-
+/**
+ *
+ * Chinmayee Nitin Vaidya, Bhumitra Nagar, Swapnil Mahajan, Xinyan Deng
+ * This is the activity that shows other user's PROFILE page.
+ *
+ */
 public class PublicProfile extends AppCompatActivity {
     ImageView image;
     TextView mText1;

@@ -39,7 +39,7 @@ import java.util.Calendar;
 /**
  *
  * Chinmayee Nitin Vaidya, Bhumitra Nagar, Swapnil Mahajan, Xinyan Deng
- * This is the activity that shows the opportunity detail
+ * This is the activity that shows the opportunity detail.
  *
  */
 public class OppDetail extends AppCompatActivity {

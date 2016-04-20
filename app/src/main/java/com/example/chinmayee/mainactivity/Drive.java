@@ -5,7 +5,7 @@ import android.app.Application;
 /**
  *
  * Chinmayee Nitin Vaidya, Bhumitra Nagar, Swapnil Mahajan, Xinyan Deng
- * This is a helper class that stores the user
+ * This is a helper class that stores the user infomation.
  *
  */
 public class Drive extends Application {

@@ -19,7 +19,12 @@ import android.widget.ListView;
 
 import com.firebase.client.Firebase;
 
-
+/**
+ *
+ * Chinmayee Nitin Vaidya, Bhumitra Nagar, Swapnil Mahajan, Xinyan Deng
+ * This is a helper class that get used in Home page.
+ *
+ */
 public class OpportunityActivity extends AppCompatActivity {
     TabLayout tabLayout;
     private ListView mDrawerList;

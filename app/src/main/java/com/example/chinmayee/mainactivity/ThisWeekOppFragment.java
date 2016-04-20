@@ -21,6 +21,13 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+/**
+ *
+ * Chinmayee Nitin Vaidya, Bhumitra Nagar, Swapnil Mahajan, Xinyan Deng
+ * This is for the HOME page. This fragment is used in HOME page,
+ * THIS WEEK tab
+ *
+ */
 public class ThisWeekOppFragment extends ListFragment  {
         private List<Opportunity> toDisplay;
         private Firebase myFirebaseRef;

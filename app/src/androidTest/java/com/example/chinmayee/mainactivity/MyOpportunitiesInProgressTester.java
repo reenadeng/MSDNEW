@@ -1,7 +1,7 @@
-package com.example.chinmayee.mainactivity; /**
- * Created by bhumi on 3/24/2016.
+package com.example.chinmayee.mainactivity;
+/**
+ * Chinmayee Nitin Vaidya, Bhumitra Nagar, Swapnil Mahajan, Xinyan Deng
  */
-
 
 import android.support.test.uiautomator.By;
 import android.support.test.uiautomator.UiDevice;
@@ -33,6 +33,9 @@ public class MyOpportunitiesInProgressTester extends InstrumentationTestCase {
         }catch (Exception e){
            Log.d("exception",e.getMessage());
         }
+
+        //"Apps" should be changes to "All apps" if running tests on a real mobile device.
+        // It varies from device to device. We used HTC one M8.
         device.pressHome();
         device.wait(Until.hasObject(By.desc("Apps")), 3000);
         UiObject2 appsButton = device.findObject(By.desc("Apps"));

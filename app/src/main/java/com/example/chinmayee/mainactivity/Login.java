@@ -9,6 +9,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ *
+ * Chinmayee Nitin Vaidya, Bhumitra Nagar, Swapnil Mahajan, Xinyan Deng
+ * This is the activity that shows the LOGIN page.
+ *
+ */
 public class Login extends AppCompatActivity {
 
 

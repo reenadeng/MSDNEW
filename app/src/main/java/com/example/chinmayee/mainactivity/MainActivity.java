@@ -26,7 +26,12 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-
+/**
+ *
+ * Chinmayee Nitin Vaidya, Bhumitra Nagar, Swapnil Mahajan, Xinyan Deng
+ * This is the activity that shows the PROFILE page.
+ *
+ */
 public class MainActivity extends AppCompatActivity {
     private ImageView image;
     private TextView mText1;

@@ -1,5 +1,11 @@
 package com.example.chinmayee.mainactivity;;
 
+/**
+ *
+ * Chinmayee Nitin Vaidya, Bhumitra Nagar, Swapnil Mahajan, Xinyan Deng
+ * This is a helper class that stores the opportunity infomation.
+ *
+ */
 public class Opportunity {
     private int id;
     private String name;

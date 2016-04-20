@@ -28,6 +28,12 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
+/**
+ *
+ * Chinmayee Nitin Vaidya, Bhumitra Nagar, Swapnil Mahajan, Xinyan Deng
+ * This is the activity that shows the HOME page.
+ *
+ */
 public class HomeActivity extends AppCompatActivity {
     TabLayout tabLayout;
     private Firebase myFirebaseRef;

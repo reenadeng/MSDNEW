@@ -21,7 +21,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 
-
+/**
+ *
+ * Chinmayee Nitin Vaidya, Bhumitra Nagar, Swapnil Mahajan, Xinyan Deng
+ * This is the activity that shows the MY OPPORTUNITIES page.
+ *
+ */
 public class MyOppsActivity extends AppCompatActivity {
 //new
     private ListView mDrawerList;

@@ -17,7 +17,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 /**
- * A fragment that launches other parts of the demo application.
+ *
+ * Chinmayee Nitin Vaidya, Bhumitra Nagar, Swapnil Mahajan, Xinyan Deng
+ * This is a helper class that get used in Opportunity detail.
+ *
  */
 public class MapFragment extends Fragment {
 

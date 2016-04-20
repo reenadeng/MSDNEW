@@ -17,6 +17,13 @@ import com.firebase.client.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * Chinmayee Nitin Vaidya, Bhumitra Nagar, Swapnil Mahajan, Xinyan Deng
+ * This is for the MY OPPORTUNITIES page. This fragment is used in
+ * MY OPPORTUNITIES page, SAVED tab
+ *
+ */
 public class SavedOppFragment extends ListFragment {
     private List<Opportunity> toDisplay;
     private Firebase myFirebaseRef = new Firebase(new Drive().getFirebaseURL());

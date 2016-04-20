@@ -3,6 +3,12 @@ package com.example.chinmayee.mainactivity;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ *
+ * Chinmayee Nitin Vaidya, Bhumitra Nagar, Swapnil Mahajan, Xinyan Deng
+ * Helper class
+ *
+ */
 public class UserObject {
     private int id;
     private String about;

@@ -20,7 +20,11 @@ import java.util.List;
 ;
 
 /**
- * Created by Swapnil on 3/24/2016.
+ *
+ * Chinmayee Nitin Vaidya, Bhumitra Nagar, Swapnil Mahajan, Xinyan Deng
+ * This is for the MY OPPORTUNITIES page. This fragment is used in MY OPPORTUNITIES page,
+ * IN PROGRESS tab
+ *
  */
 public class InProgressFragment extends ListFragment {
     private List<Opportunity> toDisplay;

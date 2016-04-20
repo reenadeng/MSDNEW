@@ -1,7 +1,11 @@
 package com.example.chinmayee.mainactivity;
 
-import java.util.List;
-
+/**
+ *
+ * Chinmayee Nitin Vaidya, Bhumitra Nagar, Swapnil Mahajan, Xinyan Deng
+ * This is a helper class that stores the other user's infomation.
+ *
+ */
 public class PublicUser {
     private String id;
     private String fname;

@@ -14,6 +14,12 @@ import android.widget.Spinner;
 
 import com.squareup.picasso.Picasso;
 
+/**
+ *
+ * Chinmayee Nitin Vaidya, Bhumitra Nagar, Swapnil Mahajan, Xinyan Deng
+ * This is the activity that shows the edit profile page.
+ *
+ */
 public class EditProfile extends AppCompatActivity {
     ImageView image;
     String userPic;
